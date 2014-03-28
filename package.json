@@ -1,0 +1,14 @@
+{
+  "name": "capture-vocabulary",
+  "version": "0.1.0",
+  "devDependencies": {},
+  "dependencies": {
+    "nano": "~4.0.0",
+    "underscore": "~1.5.2",
+    "express": "~3.3.4",
+    "nodecr": "0.0.5",
+    "recordrtc": "~2.0.0",
+    "http": "0.0.0",
+    "util": "~0.10.3"
+  }
+}
