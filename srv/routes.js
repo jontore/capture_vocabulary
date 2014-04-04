@@ -21,14 +21,22 @@ Routes.prototype.initRoutes = function () {
     fs.writeFile(__dirname + '/img.png', buffer, function (err) {
       ocr.process(__dirname + '/img.png', function(text) {
         res.statusCode = 200;
-        console.log('text----', text);
         res.send({
           translated: text
         });
       });
     });
-
   }));
+
+  this.app.post('/upload', _.bind(function(req, res) {
+    ocr.process(req.files.img.path, function(text) {
+        res.statusCode = 200;
+        res.send({
+          translated: text
+        });
+      });
+  }));
+
 };
 
 exports.Routes = Routes;

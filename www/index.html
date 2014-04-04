@@ -1,14 +1,24 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="css/scaffolding.css"/>
+    <link rel="stylesheet" type="text/css" href="./lib/bootstrap/css/bootstrap.css"/>
     <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script>
     <script src="lib/pixastic.js"></script>
     <script src="lib/underscore.js"></script>
   </head>
   <body>
+
     <video id="video"></video>
-    <button id="startbutton">Take photo</button>
+    <button class="btn" id="startbutton">Take photo</button>
     <p id="text"></p>
+
+
+    <form action="upload" enctype="multipart/form-data" method="post">
+      <input class="btn" type="file" name="img"></input>
+      <input type="submit" value="upload"></input>
+    </form>
+
     <script src="js/imageProcessing.js"></script>
     <script src="js/video.js"></script>
     <script src="js/app.js"></script>

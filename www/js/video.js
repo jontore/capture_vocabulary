@@ -6,8 +6,8 @@
     var streaming = false,
         video        = document.querySelector('#video'),
         startbutton  = document.querySelector('#startbutton'),
-        width = 720,
-        height = 0;
+        width = 320,
+        height = 1680;
 
     navigator.getMedia = ( navigator.getUserMedia ||
                            navigator.webkitGetUserMedia ||
