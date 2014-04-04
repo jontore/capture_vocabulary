@@ -9,7 +9,7 @@ var Ocr = function () {
         } else {
           cb(text);
         }
-    }, null, 6, null, textopt);
+    }, null, null, null, textopt);
   };
 };
 
