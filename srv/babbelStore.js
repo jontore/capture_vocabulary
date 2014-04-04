@@ -51,7 +51,7 @@ var BabbelStore = function () {
   this.addWordIfNotThere = function (word, cb) {
     cb = cb || function () {};
     this.checkForWord(word.translation, _.bind(function (data) {
-      if (data.match === 'true') {
+      if (data.match === 'false') {
         this.addWord(word, function (o) {
           o.added = true;
           cb(o);
