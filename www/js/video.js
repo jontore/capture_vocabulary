@@ -5,9 +5,9 @@
     var streaming = false,
         video        = document.querySelector('#video'),
         startbutton  = document.querySelector('#startbutton'),
-        width = 320,
-        height = 1680;
-        addWordList = new capturama.addWordList();
+        width = 300,
+        height = 0;
+        translateWordList = new capturama.translateWordList($('.video-capture'));
 
     navigator.getMedia = ( navigator.getUserMedia ||
                            navigator.webkitGetUserMedia ||
@@ -53,8 +53,8 @@
 
       var photo = document.createElement('img');
       photo.setAttribute('src', data);
-      capturama.translate.image(data, function (data) {
-        addWordList.update(data);
+      capturama.imageProcessing(data, function (data) {
+        translateWordList.update(data);
       });
     };
 

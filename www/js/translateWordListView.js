@@ -10,7 +10,6 @@
       var count = $('<p>' + matches.length + ' words detected</p>');
       var list = $('<ul></ul>');
 
-
       innerContainer.append(img, count, list);
       container.append(innerContainer);
       _.each(matches, function (match) {
