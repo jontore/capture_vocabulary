@@ -23,9 +23,8 @@ Routes.prototype.initRoutes = function () {
     fs.writeFile(__dirname + '/img.png', buffer, function (err) {
       ocr.process(__dirname + '/img.png', function(text) {
         res.statusCode = 200;
-        translate(text, function (matches) {
-          res.send(matches);
-        });
+        var matches = text.split(' ');
+        res.send(matches);
       });
     });
   }));
@@ -33,9 +32,11 @@ Routes.prototype.initRoutes = function () {
   this.app.post('/upload', _.bind(function(req, res) {
     ocr.process(req.files.img.path, function(text) {
       res.statusCode = 200;
-      translate(text, function (matches) {
-        res.send(matches);
+      var matches = text.split(' ');
+      matches = _.map(matches, function (w) {
+        return w.trim();
       });
+      res.send(matches);
     });
   }));
 

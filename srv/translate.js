@@ -30,7 +30,7 @@ var Tranlate = function () {
       });
     };
 
-    options.path += '?' + qs.stringify({ q: str, langpair: 'de|en' });
+    options.path += '?' + qs.stringify({ q: str, langpair: 'de|en', de: 'mschiller@babbel.com'});
 
     http.request(options, callback).end();
   };

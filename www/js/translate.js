@@ -1,23 +1,16 @@
 (function () {
   'use strict';
-  capturama.translate = function () {
-    var imgUrl = '../img';
-    this.image = function (data, cb) {
-      cb = cb || function () {};
-      $.ajax({
-        url: imgUrl,
-        type: 'POST',
-        data: {
-          img: data,
-        },
-        success: function (data) {
-          cb(data);
-        }
-      });
-    };
+  capturama.translate = function (word, cb) {
+    var path = '../translate';
+    cb = cb || function () {};
 
-    this.string = function () {
-    };
+    var param = $.param({word: word});
+    $.ajax({
+      url: path + '?' + param,
+      type: 'GET',
+      success: function (data) {
+        cb(data);
+      }
+    });
   };
-  capturama.translate = new capturama.translate();
 })();

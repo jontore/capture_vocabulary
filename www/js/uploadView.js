@@ -2,10 +2,10 @@
   'use strict';
   capturama.uploadView = function () {
     var uploadForm = $('form');
-    var addWordList;
+    var translateWordList;
 
     var initEvents = function () {
-      addWordList = new capturama.addWordList();
+      translateWordList = new capturama.translateWordList();
       uploadForm.on('submit', function (e) {
         e.preventDefault();
 
@@ -19,7 +19,7 @@
           contentType: false,
           processData: false,
           success: function (returndata) {
-            addWordList.update(returndata);
+            translateWordList.update(returndata);
           }
         });
 
