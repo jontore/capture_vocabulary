@@ -2,7 +2,8 @@
   'use strict';
   capturama.translate = function () {
     var imgUrl = '../img';
-    this.image = function (data) {
+    this.image = function (data, cb) {
+      cb = cb || function () {};
       $.ajax({
         url: imgUrl,
         type: 'POST',
@@ -18,4 +19,5 @@
     this.string = function () {
     };
   };
+  capturama.translate = new capturama.translate();
 })();

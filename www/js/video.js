@@ -7,6 +7,7 @@
         startbutton  = document.querySelector('#startbutton'),
         width = 320,
         height = 1680;
+        addWordList = new capturama.addWordList();
 
     navigator.getMedia = ( navigator.getUserMedia ||
                            navigator.webkitGetUserMedia ||
@@ -52,7 +53,9 @@
 
       var photo = document.createElement('img');
       photo.setAttribute('src', data);
-      this.postPicture(data, function () {});
+      capturama.translate.image(data, function (data) {
+        addWordList.update(data);
+      });
     };
 
     this.initEvents = function () {

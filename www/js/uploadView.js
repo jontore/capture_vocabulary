@@ -2,8 +2,10 @@
   'use strict';
   capturama.uploadView = function () {
     var uploadForm = $('form');
+    var addWordList;
 
     var initEvents = function () {
+      addWordList = new capturama.addWordList();
       uploadForm.on('submit', function (e) {
         e.preventDefault();
 
@@ -17,30 +19,13 @@
           contentType: false,
           processData: false,
           success: function (returndata) {
-            updateWordList(returndata);
+            addWordList.update(returndata);
           }
         });
 
         return false;
       });
 
-      var updateWordList = function (matches) {
-        var list = $('.word-list');
-        _.each(matches, function (match) {
-          var button = createAddWordButton(match);
-          var el = $('<li></li>');
-          el.append(button);
-          list.append(el);
-        });
-      };
-
-      var createAddWordButton = function (word) {
-        var btn = $('<button class="btn btn-primary">' + word.translation + '</button>');
-        btn.on('click', function () {
-          capturama.addWord(word);
-        });
-        return btn;
-      };
     };
 
     initEvents();
