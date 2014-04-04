@@ -1,6 +1,5 @@
 (function() {
   window.capturama = window.capturama || {};
-  var imgUrl = 'img';
 
   capturama.video = function () {
     var streaming = false,
@@ -61,19 +60,6 @@
         this.takepicture();
         ev.preventDefault();
       }, this), false);
-    };
-
-    this.postPicture = function (data, cb) {
-      $.ajax({
-        url: imgUrl,
-        type: 'POST',
-        data: {
-          img: data,
-        },
-        success: function (data) {
-          cb(data);
-        }
-      });
     };
 
     this.initVideo();

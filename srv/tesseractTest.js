@@ -11,9 +11,9 @@ nodecr.process(__dirname + '/img.png', function(err, text) {
       translate(text, function (matches) {
         babbelStore.addWordIfNotThere(matches[0], function (d) {
           console.log('done', d);
-        });
-        babbelStore.getAllWords(function (myWords) {
-          console.log(myWords);
+          babbelStore.getAllWords(function (myWords) {
+            console.log(myWords);
+          });
         });
       });
     }

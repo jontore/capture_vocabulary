@@ -40,7 +40,7 @@ var BabbelStore = function () {
 
   this.getAllWords = function (cb) {
     get('/get_all_words', null, function (obj) {
-      console.log('obj', obj);
+      cb(obj);
     });
   };
 
