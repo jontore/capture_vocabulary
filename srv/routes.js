@@ -5,6 +5,8 @@ var fs = require('fs');
 var translate = require('./translate').translate;
 var babbelStore = require('./babbelStore').babbelStore;
 
+
+var imgPath = __dirname + '/../www/page/img.png';
 var Routes = function(app, db) {
   this.playlists = {};
   this.db = new Db(db);
@@ -20,8 +22,8 @@ Routes.prototype.initRoutes = function () {
     var base64_data = matches[2];
     var buffer = new Buffer(base64_data, 'base64');
 
-    fs.writeFile(__dirname + '/img.png', buffer, function (err) {
-      ocr.process(__dirname + '/img.png', function(text) {
+    fs.writeFile(imgPath, buffer, function (err) {
+      ocr.process(imgPath, function(text) {
         res.statusCode = 200;
         var matches = text.split(' ');
         res.send(matches);
@@ -30,6 +32,7 @@ Routes.prototype.initRoutes = function () {
   }));
 
   this.app.post('/upload', _.bind(function(req, res) {
+    fs.createReadStream(req.files.img.path).pipe(fs.createWriteStream(imgPath));
     ocr.process(req.files.img.path, function(text) {
       res.statusCode = 200;
       var matches = text.split(' ');

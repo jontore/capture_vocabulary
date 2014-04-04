@@ -5,7 +5,7 @@
     var translateWordList;
 
     var initEvents = function () {
-      translateWordList = new capturama.translateWordList();
+      translateWordList = new capturama.translateWordList($('.image-upload'));
       uploadForm.on('submit', function (e) {
         e.preventDefault();
 

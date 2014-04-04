@@ -1,9 +1,17 @@
 (function () {
   'use strict';
-  capturama.addWordList = function () {
+  capturama.addWordList = function (container) {
+    var message;
     this.update = function (matches) {
-      var list = $('.word-list');
+      container.empty();
+      var innerContainer = $('<div class="add-word-container"></div>');
+      var list = $('<ul></ul>');
+      message = $('<h2></h2>');
+      innerContainer.append(message, list);
+      container.append(innerContainer);
+
       list.empty();
+
       if (matches.length === 0) {
           list.append('<li>No mactch</li>');
       }
@@ -20,6 +28,7 @@
       btn.on('click', function () {
         capturama.addWord(word, function () {
           btn.addClass('btn-success');
+          message.text('You added ' + word.translation);
         });
       });
       return btn;

@@ -1,5 +1,7 @@
 <html>
+  <!DOCTYPE html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../css/scaffolding.css"/>
     <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.css"/>
     <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
@@ -11,19 +13,24 @@
   </head>
   <body>
 
-  <div class="image-upload">
-
-    <form action="../upload" enctype="multipart/form-data" method="post">
-      <input class="btn" type="file" name="img"></input>
-      <input class="btn btn-primary" type="submit" value="upload"></input>
-    </form>
-
-    <ul class="translate-list"></ul>
-    <ul class="word-list"></ul>
+  <header>
+    <ul class="nav nav-tabs">
+      <li class="active"><a><span class="glyphicon glyphicon-camera"></span></a></li>
+      <li><a href="#">Captures</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-plus"></span></a></li>
+    </ul>
+  </header>
+  <div class="image-upload container">
+    <div class="upload-img">
+      <form action="../upload" enctype="multipart/form-data" method="post">
+        <input class="btn" type="file" name="img"></input>
+        <input class="btn btn-primary" type="submit" value="upload"></input>
+      </form>
+    </div>
   </div>
     <script src="../js/uploadView.js"></script>
     <script src="../js/translateWordListView.js"></script>
     <script src="../js/addWordListView.js"></script>
-    <script> new capturama.uploadView();</script>
+    <script src="../js/app.js"></script>
   </body>
 </html>
