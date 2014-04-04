@@ -11,7 +11,7 @@ var Tranlate = function () {
       path: '/get'
     };
 
-    callback = function(response) {
+    var callback = function(response) {
       var str = '';
 
       response.on('data', function (chunk) {
@@ -21,7 +21,10 @@ var Tranlate = function () {
       response.on('end', function () {
         var obj = JSON.parse(str);
         var translations = _.map(obj.matches, function (match) {
-          return match.translation;
+          return {
+            translation: match.translation,
+            original: match.segment
+          };
         });
         cb(translations);
       });
