@@ -1,6 +1,6 @@
 var _ = require('underscore');
 var Db = require('./db').Db;
-var nodecr = require('nodecr');
+var ocr = require('./ocr').Ocr;
 var fs = require('fs');
 
 var Routes = function(app, db) {
@@ -11,7 +11,7 @@ var Routes = function(app, db) {
 };
 
 Routes.prototype.initRoutes = function () {
-  this.app.post('/img', _.bind(function(req, res) {;
+  this.app.post('/img', _.bind(function(req, res) {
     var data_url = req.body.img;
     var matches = data_url.match(/^data:.+\/(.+);base64,(.*)$/);
     var ext = matches[1];
@@ -19,16 +19,12 @@ Routes.prototype.initRoutes = function () {
     var buffer = new Buffer(base64_data, 'base64');
 
     fs.writeFile(__dirname + '/img.png', buffer, function (err) {
-      nodecr.process(__dirname + '/img.png', function(err, text) {
-          if(err) {
-            console.error(err);
-          } else {
-            res.statusCode = 200;
-            console.log('text----', text);
-            res.send({
-              translated: text
-            });
-          }
+      ocr.process(__dirname + '/img.png', function(text) {
+        res.statusCode = 200;
+        console.log('text----', text);
+        res.send({
+          translated: text
+        });
       });
     });
 
