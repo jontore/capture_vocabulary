@@ -35,7 +35,7 @@ video {
   width: 100%;
 }
 
-.add-word-container, .translate-container {
+.my-words, .add-word-container, .translate-container {
   width: 200px;
 }
 

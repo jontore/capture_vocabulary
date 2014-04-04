@@ -6,4 +6,7 @@
   if (capturama.uploadView) {
     new capturama.uploadView();
   }
+  if (capturama.myword) {
+    new capturama.myword();
+  }
 })();
