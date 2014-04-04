@@ -1,12 +1,9 @@
 (function() {
+  var imgUrl = 'img';
 
   var streaming = false,
       video        = document.querySelector('#video'),
-      cover        = document.querySelector('#cover'),
-      canvas       = document.createElement('canvas'),
-      photo        = document.createElement('img'),
       startbutton  = document.querySelector('#startbutton'),
-      text         = document.querySelector('#text'),
       width = 200,
       height = 0;
 
@@ -15,7 +12,8 @@
                          navigator.mozGetUserMedia ||
                          navigator.msGetUserMedia);
 
-  navigator.getMedia(
+  var initVideo = function () {
+     navigator.getMedia(
     {
       video: true,
       audio: false
@@ -34,41 +32,52 @@
     }
   );
 
-  video.addEventListener('canplay', function(ev){
-    if (!streaming) {
-      height = video.videoHeight / (video.videoWidth/width);
-      video.setAttribute('width', width);
-      video.setAttribute('height', height);
-      canvas.setAttribute('width', width);
-      canvas.setAttribute('height', height);
-      streaming = true;
-    }
-  }, false);
+    video.addEventListener('canplay', function(ev){
+      if (!streaming) {
+        height = video.videoHeight / (video.videoWidth/width);
+        video.setAttribute('width', width);
+        video.setAttribute('height', height);
+        canvas.setAttribute('width', width);
+        canvas.setAttribute('height', height);
+        streaming = true;
+      }
+    }, false);
+  };
 
-  function takepicture() {
+  var takepicture = function () {
+    var canvas = document.createElement('canvas');
     canvas.width = width;
     canvas.height = height;
     canvas.getContext('2d').drawImage(video, 0, 0, width, height);
     var data = canvas.toDataURL('image/png');
-    photo.setAttribute('src', data);
 
+    var photo = document.createElement('img');
+    photo.setAttribute('src', data);
+    postPicture(data, function () {});
+  };
+
+  var initEvents = function () {
+    startbutton.addEventListener('click', function(ev){
+        takepicture();
+      ev.preventDefault();
+    }, false);
+  };
+
+  var postPicture = function (data, cb) {
     $.ajax({
-      url: 'img',
+      url: imgUrl,
       type: 'POST',
       data: {
-        img: canvas.toDataURL('image/png'),
+        img: data,
       },
       success: function (data) {
-        text.innerHTML = 'translated: ' + data.translated;
+        cb(data);
       }
     });
+  };
 
-  }
-
-  startbutton.addEventListener('click', function(ev){
-      takepicture();
-    ev.preventDefault();
-  }, false);
+  initVideo();
+  initEvents();
 
 })();
 
